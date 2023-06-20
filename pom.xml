@@ -1,0 +1,136 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+  	<groupId>io.lumine</groupId>
+  	<artifactId>MCCosmetics-Plugin</artifactId>
+  	<version>${mccosmetics.version}</version>
+  	<name>MCCosmetics</name>
+  	<description>A plugin for creating insane cosmetics.</description>
+  	<url>https://www.mythiccraft.io</url>
+  	<packaging>pom</packaging>
+    <organization>
+        <name>Lumine LLC</name>
+        <url>https://www.lumine.io</url>
+    </organization>
+ 
+	<properties>  
+	    <mccosmetics.version>0.11.0</mccosmetics.version>
+	    <paperapi.version>1.19.4-R0.1-SNAPSHOT</paperapi.version>
+	    <lumineutils.version>1.19-SNAPSHOT</lumineutils.version>
+	    <lombok.version>1.18.22</lombok.version>
+    	<!--suppress UnresolvedMavenProperty -->
+		<build.number>${CI_COMMIT_SHORT_SHA}</build.number>
+    	<downloadSources>false</downloadSources>
+		<downloadJavadocs>false</downloadJavadocs>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<ticxo.build.location>../target</ticxo.build.location>
+		<ticxo.build.premium>../target</ticxo.build.premium>
+	</properties>
+	
+	<modules>
+	    <module>api</module>
+        <module>plugin</module>
+        <module>v1_18_R2</module>
+        <module>v1_19_R2</module>
+        <module>v1_19_R3</module>
+        <module>dist</module>
+        <module>dist-premium</module>
+	</modules>
+ 
+  	<distributionManagement>
+		<repository>
+	    	<id>nexus</id>
+	    	<name>Lumine Releases</name>
+	        <url>https://mvn.lumine.io/repository/maven-releases/</url>
+	  	</repository>
+	  	<snapshotRepository> 
+	    	<id>nexus</id> 
+	    	<name>Lumine Snapshots</name>
+	        <url>https://mvn.lumine.io/repository/maven-snapshots/</url>
+	  	</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<finalName>${project.name}-${project.version}</finalName>
+	    <defaultGoal>clean package install</defaultGoal>
+	    <plugins>
+	      	<plugin>
+	        	<artifactId>maven-compiler-plugin</artifactId>
+	        	<version>3.8.0</version>
+                <configuration>
+                    <release>16</release>
+                </configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<!--
+	<reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>
+        </plugins>
+    </reporting>
+    -->
+	<repositories>
+		<repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>lumine</id>
+            <url>https://mvn.lumine.io/repository/maven/</url>
+        </repository>
+        <!-- <repository>
+		  	<id>bstats-repo</id>
+		  	<url>http://repo.bstats.org/content/repositories/releases/</url>
+		  	<snapshots>
+	            <enabled>true</enabled>
+	            <updatePolicy>never</updatePolicy>
+	        </snapshots> 
+	        <releases>
+	            <enabled>true</enabled>
+	            <updatePolicy>never</updatePolicy>
+	        </releases>
+		</repository>  -->
+	    <repository>
+      		<id>md_5-snapshots</id>
+      		<url>https://repo.md-5.net/content/repositories/snapshots/</url>
+    	</repository>
+    	<repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+	  	<repository>
+		    <id>papermc</id>
+		    <url>https://papermc.io/repo/repository/maven-public/</url>
+		</repository>
+		<repository>
+		  	<id>CodeMC</id>
+		  	<url>https://repo.codemc.org/repository/maven-public</url>
+		</repository>
+		<!-- Vault -->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+	</repositories>
+	<pluginRepositories>
+	    <pluginRepository>
+	        <id>apache.snapshots</id>
+	        <url>https://repository.apache.org/snapshots/</url>
+	    </pluginRepository>
+		<pluginRepository>
+		    <id>synergian-repo</id>
+		    <url>https://raw.github.com/synergian/wagon-git/releases</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>

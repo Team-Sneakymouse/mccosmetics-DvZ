@@ -1,0 +1,41 @@
+name: MCCosmetics
+author: Lumine & MCModels
+main: io.lumine.cosmetics.MCCosmeticsPlugin
+version: ${project.version}-${build.number}
+api-version: 1.13
+depend: []
+softdepend:
+- ModelEngine
+- MythicMobs
+- Vault
+- LibsDisguises
+- PlaceholderAPI
+- WorldGuard
+loadbefore: []
+description: Plugin for adding amazing cosmetics, brought to you by MCModels
+commands:
+  mccosmetics:
+    description: MCCosmetics admin command
+    aliases: [mcc]
+  cosmetics:
+    description: MCCosmetics user command
+    aliases: [cosmetic]
+  sprays:
+    description: Open the sprays menu
+    aliases: []
+  spray:
+    description: Use your equipped spray
+    aliases: [s]
+  sprayremove:
+    description: Remove your used sprays
+    aliases: [removespray]
+  emote:
+    description: Use your equipped emote
+    aliases: [emotes, e]
+permissions:
+  mccosmetics.admin.command:
+    description: Gives access to the base admin commands
+    default: op
+  mccosmetics.admin.command.reload:
+    description: Gives access /mccosmetics reload!
+    default: op

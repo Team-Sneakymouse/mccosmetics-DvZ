@@ -1,0 +1,12 @@
+skull:
+  Material: MAP
+  Model: 0
+  Display: "&dSkull"
+  Description:
+  - "&fCreated by EnderIzzy"
+hearts:
+  Material: MAP
+  Model: 0
+  Display: "&dHearts"
+  Description:
+  - "&fCreated by EnderIzzy"
