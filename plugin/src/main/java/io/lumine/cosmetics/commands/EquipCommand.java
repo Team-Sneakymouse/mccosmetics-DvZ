@@ -31,7 +31,7 @@ public class EquipCommand extends Command<MCCosmeticsPlugin> {
     public boolean onCommand(CommandSender sender, String[] args) {
         final var player = (Player) sender;
         final var profile = getPlugin().getProfiles().getProfile(player);
-        
+
         var type = args[0];
         var cosmeticName = args[1];
 
@@ -40,24 +40,24 @@ public class EquipCommand extends Command<MCCosmeticsPlugin> {
             CommandHelper.sendError(sender, "Invalid cosmetic type");
             return true;
         }
-        
+
         var manager = maybeManager.get();
-        
+
         var maybeCosmetic = manager.getCosmetic(cosmeticName);
         if(maybeCosmetic.isEmpty()) {
             CommandHelper.sendError(sender, "Specified cosmetic was not found");
             return true;
         }
         var cosmetic = (Cosmetic) maybeCosmetic.get();
-        
+
         if(!profile.has(cosmetic)) {
             CommandHelper.sendError(sender, "You have not unlocked that cosmetic!");
             return true;
         }
 
         profile.equip(cosmetic);
-        CommandHelper.sendSuccess(sender, "Equipped " + CosmeticType.get(manager.getCosmeticClass()).type().toLowerCase() + " " + cosmetic);
-        
+        //CommandHelper.sendSuccess(sender, "Equipped " + CosmeticType.get(manager.getCosmeticClass()).type().toLowerCase() + " " + cosmetic);
+
         return true;
     }
 
@@ -77,14 +77,14 @@ public class EquipCommand extends Command<MCCosmeticsPlugin> {
 
             final var player = (Player) sender;
             final var profile = getPlugin().getProfiles().getProfile(player);
-            
+
             Collection<String> cosmeticTypes = Lists.newArrayList();
             for(var cosmetic : (Collection<Cosmetic>) manager.getAllCosmetics()) {
                 if(profile.has(cosmetic)) {
                     cosmeticTypes.add(cosmetic.getId());
                 }
             }
-            
+
             return StringUtil.copyPartialMatches(args[1], cosmeticTypes, new ArrayList<>());
         }
         return Collections.emptyList();

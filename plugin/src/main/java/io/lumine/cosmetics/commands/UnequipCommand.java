@@ -27,7 +27,7 @@ public class UnequipCommand extends Command<MCCosmeticsPlugin> {
     public boolean onCommand(CommandSender sender, String[] args) {
         final var player = (Player) sender;
         final var profile = getPlugin().getProfiles().getProfile(player);
-        
+
         var type = args[0];
 
         var maybeManager = getPlugin().getCosmetics().getManager(type);
@@ -35,12 +35,12 @@ public class UnequipCommand extends Command<MCCosmeticsPlugin> {
             CommandHelper.sendError(sender, "Invalid cosmetic type");
             return true;
         }
-        
+
         var manager = maybeManager.get();
-        
+
         profile.unequip(manager.getCosmeticClass());
-        CommandHelper.sendSuccess(sender, "Unequipped your " + CosmeticType.get(manager.getCosmeticClass()).type().toLowerCase());
-        
+        //CommandHelper.sendSuccess(sender, "Unequipped your " + CosmeticType.get(manager.getCosmeticClass()).type().toLowerCase());
+
         return true;
     }
 
