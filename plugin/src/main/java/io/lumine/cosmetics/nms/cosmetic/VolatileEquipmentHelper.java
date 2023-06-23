@@ -8,7 +8,11 @@ public interface VolatileEquipmentHelper extends VolatileCosmeticHelper {
 
 	void apply(CosmeticProfile profile);
 	void unapply(CosmeticProfile profile);
-	
+
+	default void reapply(CosmeticProfile profile) {
+
+	}
+
 	default void equipMannequin(Mannequin mannequin, EquippedCosmetic cosmetic) {
 	    
 	}

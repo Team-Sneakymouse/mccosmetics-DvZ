@@ -123,7 +123,7 @@ public class BackManager extends MCCosmeticsManager<BackAccessory> implements Hi
         getHelper().apply(profile);
     }
 
-    protected VolatileEquipmentHelper getHelper() {
+    public VolatileEquipmentHelper getHelper() {
         return (VolatileEquipmentHelper) getNMSHelper();
     }
 

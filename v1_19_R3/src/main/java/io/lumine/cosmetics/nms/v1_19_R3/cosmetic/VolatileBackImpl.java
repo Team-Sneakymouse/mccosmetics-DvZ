@@ -110,7 +110,30 @@ public class VolatileBackImpl implements VolatileEquipmentHelper {
 		nmsHandler.broadcastAroundAndSelf(player, removePacket);
 	}
 	
-    @Override 
+
+	@Override
+	public void reapply(CosmeticProfile profile) {
+		Player player = profile.getPlayer();
+		ArmorStand stand = activeProfile.get(player);
+		if(stand == null)
+			return;
+
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(MCCosmeticsPlugin.inst(), ()->{
+    		int[] passengerIDs = new int[player.getPassengers().size() + 1];
+
+    		for (int i = 0; i < player.getPassengers().size(); i++) {
+    			passengerIDs[i] = player.getPassengers().get(i).getEntityId();
+            }
+
+    		passengerIDs[passengerIDs.length - 1] = stand.getId();
+
+    		ClientboundSetPassengersPacket passengersPacket = createPassengerPacket(player.getEntityId(), passengerIDs);
+
+    		nmsHandler.broadcastAroundAndSelf(player, passengersPacket);
+        }, 1);
+	}
+
+    @Override
     public void equipMannequin(Mannequin mannequin, EquippedCosmetic cosmetic) {
         if(!(cosmetic.getCosmetic() instanceof BackAccessory back)) {
             return;
