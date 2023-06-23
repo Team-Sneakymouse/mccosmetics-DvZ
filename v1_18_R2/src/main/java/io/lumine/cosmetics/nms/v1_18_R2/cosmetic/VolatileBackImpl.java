@@ -77,7 +77,16 @@ public class VolatileBackImpl implements VolatileEquipmentHelper {
 
 			ClientboundAddMobPacket mobPacket = new ClientboundAddMobPacket(stand);
 			ClientboundSetEntityDataPacket dataPacket = new ClientboundSetEntityDataPacket(stand.getId(), stand.getEntityData(), true);
-			ClientboundSetPassengersPacket passengersPacket = createPassengerPacket(player.getEntityId(), stand.getId());
+
+			int[] passengerIDs = new int[player.getPassengers().size() + 1];
+
+			for (int i = 0; i < player.getPassengers().size(); i++) {
+				passengerIDs[i] = player.getPassengers().get(i).getEntityId();
+	        }
+
+			passengerIDs[passengerIDs.length - 1] = stand.getId();
+
+			ClientboundSetPassengersPacket passengersPacket = createPassengerPacket(player.getEntityId(), passengerIDs);
 
 			nmsHandler.broadcastAroundAndSelf(player, mobPacket, dataPacket, passengersPacket);
 		}
@@ -225,7 +234,16 @@ public class VolatileBackImpl implements VolatileEquipmentHelper {
 		ClientboundAddMobPacket mobPacket = new ClientboundAddMobPacket(stand);
 		ClientboundSetEntityDataPacket dataPacket = new ClientboundSetEntityDataPacket(stand.getId(), stand.getEntityData(), true);
 		ClientboundSetEquipmentPacket equipmentPacket = new ClientboundSetEquipmentPacket(stand.getId(), List.of(Pair.of(EquipmentSlot.HEAD, stand.getItemBySlot(EquipmentSlot.HEAD))));
-		ClientboundSetPassengersPacket passengersPacket = createPassengerPacket(wearer.getEntityId(), stand.getId());
+
+		int[] passengerIDs = new int[wearer.getPassengers().size() + 1];
+
+		for (int i = 0; i < wearer.getPassengers().size(); i++) {
+			passengerIDs[i] = wearer.getPassengers().get(i).getEntityId();
+        }
+
+		passengerIDs[passengerIDs.length - 1] = stand.getId();
+
+		ClientboundSetPassengersPacket passengersPacket = createPassengerPacket(wearer.getEntityId(), passengerIDs);
 
 		return List.of(mobPacket, dataPacket, equipmentPacket, passengersPacket);
 	}
