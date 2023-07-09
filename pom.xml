@@ -14,7 +14,7 @@
  
 	<properties>  
 	    <mccosmetics.version>0.11.0</mccosmetics.version>
-	    <paperapi.version>1.19.4-R0.1-SNAPSHOT</paperapi.version>
+	    <paperapi.version>1.20.1-R0.1-SNAPSHOT</paperapi.version>
 	    <lumineutils.version>1.19-SNAPSHOT</lumineutils.version>
 	    <lombok.version>1.18.22</lombok.version>
     	<!--suppress UnresolvedMavenProperty -->
@@ -34,6 +34,7 @@
         <module>v1_18_R2</module>
         <module>v1_19_R2</module>
         <module>v1_19_R3</module>
+        <module>v1_20_R1</module>
         <module>dist</module>
         <module>dist-premium</module>
 	</modules>
